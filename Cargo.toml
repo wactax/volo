@@ -2,8 +2,8 @@
 name = "volo_macro"
 version = "0.1.0"
 edition = "2021"
+license = "SSPL-1.0"
+description = "volo helper macro for any error"
+homepage = "https://github.com/wactax/volo_macro"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-volo = "*"
-volo-grpc = "*"
