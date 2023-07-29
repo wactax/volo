@@ -11,15 +11,13 @@ use volo_grpc::{BoxError, Request, Response, Status};
 impl $cls for S {
 $(
   async fn $name(&$self, $req: Request<$in>) -> Result<Response<$out>, Status> {
-     match {
-       let result:Result<_,BoxError> = async move {
-         $($body)*
-       }.await;
-       result
-     } {
-       Ok(r) => Ok(r),
-       Err(err) => Err(err.into()),
-     }
+    let result: Result<_,BoxError> = async move {
+        Ok({$($body)*})
+    }.await;
+    match result {
+      Ok(r) => Ok(Response::new(r)),
+      Err(err) => Err(err.into()),
+    }
   }
 )*
 }
