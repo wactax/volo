@@ -12,9 +12,10 @@ impl $cls for S {
 $(
   async fn $name(&$self, $req: Request<$in>) -> Result<Response<$out>, Status> {
      match {
-       async move {
+       let result:Result<_,BoxError> = async move {
          $($body)*
-       }.await
+       }.await;
+       result
      } {
        Ok(r) => Ok(r),
        Err(err) => Err(err.into()),
